@@ -60,7 +60,7 @@ def balance_saver():
         schedule.every().day.at("18:00:00").do(job)
         schedule.every().day.at("19:00:00").do(job)
         schedule.every().day.at("20:00:00").do(job)
-        schedule.every().day.at("21:30:00").do(job)
+        schedule.every().day.at("21:00:00").do(job)
         schedule.every().day.at("22:00:00").do(job)
         schedule.every().day.at("23:00:00").do(job)
 
