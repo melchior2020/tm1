@@ -4,8 +4,8 @@ import datetime
 from telegram_bot import *
 
 bybit = ccxt.bybit({
-                    'api_key': 'o3r5vAFgEGLX8JWNfN',
-                    'secret': 'uXH1AdEE20UehJrz8lsDVQmX84nBvWkqmhWx'
+                    'api_key': 'thcItMKHlhAp1j5bM7',
+                    'secret': '2X0DjV8HGH7W37KxRVgnGjMuTkbWLt006ElU'
 })
 
 def is_holding_position(ticker, side):
