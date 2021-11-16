@@ -21,14 +21,14 @@ def is_breakthrough(ticker):
             now_price = data[4]
             open_price = data[1]
             if ma60 >= ma20 * 1.003 >= ma9 * 1.003:
-                if now_price > ma9 and open_price < now_price:
+                if now_price > ma9 > open_price and open_price < now_price:
                     now_time = (datetime.datetime.now() + datetime.timedelta(hours=9)).strftime("%Y-%m-%d %H:%M")
                     print(now_time, 'Breakthrough strategy long sign on', ticker)
                     return 1
                 else:
                     return 0
             elif ma9 >= ma20 * 1.003 >= ma60 * 1.003:     # sell 조건
-                if now_price < ma9 and open_price > now_price:
+                if now_price < ma9 < open_price and open_price > now_price:
                     now_time = (datetime.datetime.now() + datetime.timedelta(hours=9)).strftime("%Y-%m-%d %H:%M")
                     print(now_time, 'Breakthrough strategy short sign on', ticker)
                     return 2
