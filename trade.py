@@ -12,6 +12,7 @@ class Worker:
         self.scale_rate = scale_rate
         self.min_qty = get_min_qty(ticker)  # 이거 소수점 몇째자리인지 알아야한다 밑에 주문수량에 round 걸어줘야함
         self.min_price_tick = get_min_price_tick(ticker)
+        self.min_price_tick_len = len(str(self.min_price_tick))
         self.leverage = leverage
 
     def check_signal(self):
@@ -60,10 +61,12 @@ class Worker:
                 continue
         if qty == 0:
             stop_price_raw = now_price * (1 - self.stop_loss_rate * price_multiplier)
-            stop_price = round(stop_price_raw / self.min_price_tick, 0) * self.min_price_tick
+            stop_price_raw2 = str(round(stop_price_raw / self.min_price_tick, 0) * self.min_price_tick)
+            stop_price = float(stop_price_raw2[:self.min_price_tick_len])
         else:
             stop_price_raw = ((now_price + prev_price) / 2) * (1 - self.stop_loss_rate * price_multiplier)
-            stop_price = round(stop_price_raw / self.min_price_tick, 0) * self.min_price_tick
+            stop_price_raw2 = str(round(stop_price_raw / self.min_price_tick, 0) * self.min_price_tick)
+            stop_price = float(stop_price_raw2[:self.min_price_tick_len])
             print('New stop_loss_price : ', stop_price)
         order_qty = order_value / now_price
         if order_qty >= self.min_qty:
